@@ -1,0 +1,18 @@
+name: workflow
+on:
+  schedule:
+    - cron: '0 0 * * *' # KST 9:00 AM on everyday
+  workflow_dispatch: {}
+
+jobs:
+  job:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+      - name: Update
+        run: |
+          npx stargazed -u mooyoul -t ${{ secrets.GH_TOKEN }} -r awesome-stars -m "docs: stargazed update" -s
