@@ -9,10 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v4
         with:
-          node-version: '12'
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+          cache: npm
       - name: Update
         run: |
           npx stargazed -u mooyoul -t ${{ secrets.GH_TOKEN }} -r awesome-stars -m "docs: stargazed update" -s
