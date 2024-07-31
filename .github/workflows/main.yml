@@ -15,7 +15,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'
-          cache: npm
       - name: Update
         run: |
           npx stargazed -u mooyoul -t ${{ secrets.GH_TOKEN }} -r awesome-stars -m "docs: stargazed update" -s
